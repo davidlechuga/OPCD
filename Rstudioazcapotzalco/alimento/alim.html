@@ -1,0 +1,100 @@
+<html>
+
+<head>
+<style type="text/css">
+.inline {
+  background-color: #f7f7f7;
+  border:solid 1px #B0B0B0;
+}
+.error {
+	font-weight: bold;
+	color: #FF0000;
+}
+.warning {
+	font-weight: bold;
+}
+.message {
+	font-style: italic;
+}
+.source, .output, .warning, .error, .message {
+	padding: 0 1em;
+  border:solid 1px #F7F7F7;
+}
+.source {
+  background-color: #f5f5f5;
+}
+.left {
+  text-align: left;
+}
+.right {
+  text-align: right;
+}
+.center {
+  text-align: center;
+}
+.hl.num {
+  color: #AF0F91;
+}
+.hl.str {
+  color: #317ECC;
+}
+.hl.com {
+  color: #AD95AF;
+  font-style: italic;
+}
+.hl.opt {
+  color: #000000;
+}
+.hl.std {
+  color: #585858;
+}
+.hl.kwa {
+  color: #295F94;
+  font-weight: bold;
+}
+.hl.kwb {
+  color: #B05A65;
+}
+.hl.kwc {
+  color: #55aa55;
+}
+.hl.kwd {
+  color: #BC5A65;
+  font-weight: bold;
+}
+</style>
+<title>Title</title>
+</head>
+
+<body>
+
+<p>This is an R HTML document. When you click the <b>Knit HTML</b> button a web page will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:</p>
+
+<div class="chunk" id="unnamed-chunk-1"><div class="rcode"><div class="source"><pre class="knitr r"><span class="hl kwd">library</span><span class="hl std">(plotrix)</span>
+<span class="hl kwd">library</span><span class="hl std">(readxl)</span>
+
+<span class="hl std">azca</span><span class="hl kwb">&lt;-</span><span class="hl kwd">read_xlsx</span><span class="hl std">(</span><span class="hl str">&quot;azcaalimen1.xlsx&quot;</span><span class="hl std">)</span>
+<span class="hl kwd">attach</span><span class="hl std">(azca)</span>
+
+<span class="hl std">azca1</span><span class="hl kwb">&lt;-</span><span class="hl std">azca[,</span><span class="hl opt">-</span><span class="hl num">1</span><span class="hl std">]</span>
+<span class="hl std">azca2</span><span class="hl kwb">&lt;-</span><span class="hl kwd">t</span><span class="hl std">(azca1)</span>
+<span class="hl kwd">colnames</span><span class="hl std">(azca2)</span><span class="hl kwb">&lt;-</span> <span class="hl kwd">c</span><span class="hl std">(</span><span class="hl str">&quot;Algún menor tuvo poca variedad en sus alimentos&quot;</span><span class="hl std">,</span> <span class="hl str">&quot;Algún menor comió menos de lo que debería comer&quot;</span><span class="hl std">,</span> <span class="hl str">&quot;A algún menor se le tuvo que servir menos comida&quot;</span><span class="hl std">,</span> <span class="hl str">&quot;Algún menor sintió hambre pero no comió&quot;</span><span class="hl std">,</span><span class="hl str">&quot;Algún menor comió sólo una vez al día o dejó de comer todo un día&quot;</span><span class="hl std">,</span> <span class="hl str">&quot;Algún menor se tuvo que acostar con hambre&quot;</span><span class="hl std">)</span>
+
+
+<span class="hl kwd">barp</span><span class="hl std">(azca2,</span> <span class="hl kwc">names.arg</span> <span class="hl std">=</span> <span class="hl kwd">colnames</span><span class="hl std">(azca2),</span> <span class="hl kwc">cex.axis</span> <span class="hl std">=</span> <span class="hl num">0.7</span><span class="hl std">,</span>
+     <span class="hl kwc">col</span><span class="hl std">=</span><span class="hl kwd">rainbow</span><span class="hl std">(</span><span class="hl num">3</span><span class="hl std">),</span> <span class="hl kwc">cylindrical</span> <span class="hl std">=</span> <span class="hl num">TRUE</span><span class="hl std">,</span> <span class="hl kwc">ylim</span> <span class="hl std">=</span> <span class="hl kwd">c</span><span class="hl std">(</span><span class="hl num">0</span><span class="hl std">,</span><span class="hl num">110</span><span class="hl std">),</span>
+     <span class="hl kwc">shadow</span> <span class="hl std">=</span> <span class="hl num">FALSE</span><span class="hl std">,</span> <span class="hl kwc">staxx</span> <span class="hl std">=</span> <span class="hl num">TRUE</span><span class="hl std">,</span> <span class="hl kwc">staxy</span> <span class="hl std">=</span> <span class="hl num">TRUE</span><span class="hl std">,</span>
+     <span class="hl kwc">legend.pos</span> <span class="hl std">=</span> <span class="hl kwd">list</span><span class="hl std">(</span><span class="hl kwc">x</span><span class="hl std">=</span><span class="hl num">0.10</span><span class="hl std">,</span> <span class="hl kwc">y</span><span class="hl std">=</span><span class="hl num">0.30</span><span class="hl std">),</span> <span class="hl kwc">xlab</span> <span class="hl std">=</span> <span class="hl str">&quot;&quot;</span><span class="hl std">,</span> <span class="hl kwc">ylab</span> <span class="hl std">=</span> <span class="hl str">&quot;&quot;</span><span class="hl std">,</span> <span class="hl kwc">border</span> <span class="hl std">=</span> <span class="hl num">TRUE</span><span class="hl std">)</span>
+
+
+<span class="hl kwd">mtext</span><span class="hl std">(</span><span class="hl str">&quot;Limitación de acceso a la alimentación por falta de dinero en los últimos tres meses de los menores de 18 años &quot;</span><span class="hl std">,</span> <span class="hl num">1</span><span class="hl std">,</span> <span class="hl kwc">line</span> <span class="hl std">=</span> <span class="hl num">2.8</span><span class="hl std">,</span> <span class="hl kwc">font</span> <span class="hl std">=</span> <span class="hl num">2</span><span class="hl std">,</span> <span class="hl kwc">cex</span> <span class="hl std">=</span> <span class="hl num">1.3</span><span class="hl std">)</span>
+<span class="hl kwd">mtext</span><span class="hl std">(</span><span class="hl str">&quot;% porcentaje de la población&quot;</span><span class="hl std">,</span> <span class="hl num">2</span><span class="hl std">,</span> <span class="hl kwc">line</span> <span class="hl std">=</span> <span class="hl num">2</span><span class="hl std">,</span> <span class="hl kwc">font</span> <span class="hl std">=</span> <span class="hl num">2</span><span class="hl std">,</span> <span class="hl kwc">cex</span> <span class="hl std">=</span> <span class="hl num">1.3</span><span class="hl std">)</span>
+<span class="hl kwd">legend</span><span class="hl std">(</span><span class="hl str">&quot;topright&quot;</span><span class="hl std">,</span> <span class="hl kwd">c</span><span class="hl std">(</span><span class="hl str">&quot;si&quot;</span><span class="hl std">,</span><span class="hl str">&quot;no&quot;</span> <span class="hl std">,</span> <span class="hl str">&quot;no especificado&quot;</span><span class="hl std">),</span> <span class="hl kwc">bty</span><span class="hl std">=</span><span class="hl str">&quot;n&quot;</span><span class="hl std">,</span> <span class="hl kwc">cex</span> <span class="hl std">=</span> <span class="hl num">.55</span><span class="hl std">,</span> <span class="hl kwc">fill</span><span class="hl std">=</span><span class="hl kwd">c</span><span class="hl std">(</span><span class="hl str">&quot;red&quot;</span><span class="hl std">,</span> <span class="hl str">&quot;green&quot;</span><span class="hl std">,</span><span class="hl str">&quot;blue&quot;</span><span class="hl std">))</span>
+</pre></div>
+</div><div class="rimage default"><img src="figure/unnamed-chunk-1-1.png" title="plot of chunk unnamed-chunk-1" alt="plot of chunk unnamed-chunk-1" class="plot" /></div><div class="rcode">
+<div class="source"><pre class="knitr r"><span class="hl com">#legend(&quot;topright&quot;, colnames(azca1), bty=&quot;n&quot;, cex = 0.5, fill=c(&quot;red&quot;,&quot;lightskyblue&quot;))</span>
+</pre></div>
+</div></div>
+
+</body>
+</html>
